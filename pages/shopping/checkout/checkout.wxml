@@ -13,7 +13,7 @@
                 <image src="/static/images/address_right.png"></image>
             </view>
         </view>
-        <view class="address-item address-empty" bindtap="addAddress" wx:if="{{checkedAddress.id <= 0}}">
+        <view class="address-item address-empty" bindtap="addAddress" wx:if="{{!checkedAddress.id }}">
             <view class="m">
                还没有收货地址，去添加
             </view>
@@ -23,7 +23,7 @@
         </view>
     </view>
 
-    <view class="coupon-box">
+    <!-- <view class="coupon-box">
         <view class="coupon-item">
             <view class="l">
                 <text class="name">请选择优惠券</text>
@@ -31,6 +31,22 @@
             </view>
             <view class="r">
                 <image src="/static/images/address_right.png"></image>
+            </view>
+        </view>
+    </view> -->
+
+    <view class="goods-items">
+        <view class="item" wx:for="{{checkedGoodsList}}" wx:key="{{item.id}}">
+            <view class="img">
+                <image src="{{item.primary_pic_url}}"></image>
+            </view>
+            <view class="info">
+                <view class="t">
+                    <text class="name">{{item.goods_name}}</text>
+                    <text class="number">x{{item.number}}</text>
+                </view>
+                <view class="m">{{item.goods_specifition_name_value}}</view>
+                <view class="b">￥{{item.retail_price}}</view>
             </view>
         </view>
     </view>
@@ -52,30 +68,30 @@
                 <text class="txt">￥{{freightPrice}}</text>
             </view>
         </view>
-        <view class="order-item no-border">
+        <view class="order-item">
+            <view class="l">
+                <text class="name">送达时间</text>
+            </view>
+            <view class="r">
+            <time-picker mode="dateTime" class="picker" placeholder="请选择时间" bind:onPickerChange="onPickerChange"></time-picker>
+            </view>
+        </view>
+        <view class="order-item">
+            <view class="l">
+                <text class="name">代写祝语</text>
+            </view>
+            <view style='border: 1rpx solid #ddd;border-radius: 10rpx;width: 800rpx;padding: 4px;height: 200rpx'>
+                <textarea bindinput="handleTextArea" style='width: 480rpx;height: 200rpx;' class="txt"></textarea>
+            </view>
+        </view>
+        <!-- <view class="order-item no-border">
             <view class="l">
                 <text class="name">优惠券</text>
             </view>
             <view class="r">
                 <text class="txt">-￥{{couponPrice}}</text>
             </view>
-        </view>
-    </view>
-
-    <view class="goods-items">
-        <view class="item" wx:for="{{checkedGoodsList}}" wx:key="{{item.id}}">
-            <view class="img">
-                <image src="{{item.list_pic_url}}"></image>
-            </view>
-            <view class="info">
-                <view class="t">
-                    <text class="name">{{item.goods_name}}</text>
-                    <text class="number">x{{item.number}}</text>
-                </view>
-                <view class="m">{{item.goods_specifition_name_value}}</view>
-                <view class="b">￥{{item.retail_price}}</view>
-            </view>
-        </view>
+        </view> -->
     </view>
 
     <view class="order-total">

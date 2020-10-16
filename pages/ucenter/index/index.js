@@ -97,15 +97,56 @@ Page({
   onSectionItemClick: function(event) {
 
   },
+  goOrder() {
+    if(!wx.getStorageSync('userInfo')) return wx.showToast({
+      title: '请先登录',
+      icon: "none"
+    })
+    wx.navigateTo({
+      url: "/pages/ucenter/order/order",
+    })
+  },
+  goFavorite() {
+    if(!wx.getStorageSync('userInfo')) return wx.showToast({
+      title: '请先登录',
+      icon: "none"
+    })
+    wx.navigateTo({
+      url: "/pages/ucenter/collect/collect",
+    })
+  },
+  goFootPrint() {
+    if(!wx.getStorageSync('userInfo')) return wx.showToast({
+      title: '请先登录',
+      icon: "none"
+    })
+    wx.navigateTo({
+      url: "/pages/ucenter/footprint/footprint",
+    })
+  },
+  goAddress() {
+    if(!wx.getStorageSync('userInfo')) return wx.showToast({
+      title: '请先登录',
+      icon: "none"
+    })
+    wx.navigateTo({
+      url: "../address/address",
+    })
+  },
 
   // TODO 移到个人信息页面
   exitLogin: function() {
+    const that = this;
     wx.showModal({
       title: '',
       confirmColor: '#b4282d',
       content: '退出登录？',
       success: function(res) {
         if (res.confirm) {
+          app.globalData.userInfo = {      
+            nickname: '点击登录',
+            avatar: 'http://yanxuan.nosdn.127.net/8945ae63d940cc42406c3f67019c5cb6.png'
+          };
           wx.removeStorageSync('token');
           wx.removeStorageSync('userInfo');
           wx.switchTab({

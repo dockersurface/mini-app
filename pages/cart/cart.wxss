@@ -67,7 +67,7 @@ page{
     width: 100%;
     height: auto;
     overflow: hidden;
-    
+    border-top: 1rpx solid #ddd;
 }
 
 .cart-view .list{

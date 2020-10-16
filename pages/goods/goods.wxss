@@ -33,44 +33,66 @@
   color: #666;
 }
 
+button[plain] {
+  border: none;
+  border-color: transparent;
+}
+
 .goods-info {
   width: 750rpx;
-  height: 306rpx;
-  overflow: hidden;
   background: #fff;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 38rpx 31.25rpx 38rpx 31.25rpx;
+}
+
+.goods-info-share {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0;
+}
+
+.goods-info-share image {
+  width: 50rpx;
+  height: 50rpx;
+}
+
+.goods-info-share text {
+  color: #a3a3a3;
+}
+
+.goods-info-line {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 .goods-info .c {
-  display: block;
-  width: 718.75rpx;
-  height: 100%;
-  margin-left: 31.25rpx;
-  padding: 38rpx 31.25rpx 38rpx 0;
-  border-bottom: 1px solid #f4f4f4;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;  
+  overflow: hidden;
 }
 
 .goods-info .c text {
   display: block;
-  width: 687.5rpx;
+  /* width: 687.5rpx; */
   text-align: center;
 }
 
 .goods-info .name {
-  height: 41rpx;
   margin-bottom: 5.208rpx;
-  font-size: 41rpx;
-  line-height: 41rpx;
+  font-size: 38rpx;
 }
 
 .goods-info .desc {
-  height: 43rpx;
-  margin-bottom: 41rpx;
   font-size: 24rpx;
-  line-height: 36rpx;
   color: #999;
 }
 
-.goods-info .price {
+.price {
   height: 35rpx;
   font-size: 35rpx;
   line-height: 35rpx;
@@ -94,6 +116,16 @@
   border-radius: 4px;
   background: url(http://nos.netease.com/mailpub/hxm/yanxuan-wap/p/20150730/style/img/icon-normal/detailTagArrow-18bee52dab.png) 95% center no-repeat;
   background-size: 10.75rpx 18.75rpx;
+}
+
+.goods-info-line {
+  width: 750rpx;
+  background: #fff;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 0 31.25rpx 20px 31.25rpx;
+  border-bottom: 1px solid #f4f4f4;
 }
 
 .section-nav {

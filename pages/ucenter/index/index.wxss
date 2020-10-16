@@ -157,6 +157,8 @@ page{
     background: #fff;
     color: #333;
     font-size: 30rpx;
+    position: absolute;
+    bottom: 20rpx;
 }
 
 

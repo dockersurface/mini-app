@@ -34,18 +34,24 @@ Page({
     })
   },
   selectAddress(event){
-    console.log(event.currentTarget.dataset.addressId);
+    util.request(api.addressDefault, { 
+      id: event.currentTarget.dataset.addressId,
+      is_default: true,
+    }, 'POST').then(function (res) {
+      setTimeout(() => wx.navigateBack({delta: 1}), 1000)
+    });
+    // console.log(event.currentTarget.dataset.addressId);
 
-    try {
-      wx.setStorageSync('addressId', event.currentTarget.dataset.addressId);
-    } catch (e) {
+    // try {
+    //   wx.setStorageSync('addressId', event.currentTarget.dataset.addressId);
+    // } catch (e) {
 
-    }
+    // }
 
-    //选择该收货地址
-    wx.redirectTo({
-      url: '/pages/shopping/checkout/checkout'
-    })
+    // //选择该收货地址
+    // wx.redirectTo({
+    //   url: '/pages/shopping/checkout/checkout'
+    // })
   },
   onHide: function () {
     // 页面隐藏

@@ -51,6 +51,17 @@ Page({
     // 页面渲染完成
   },
   onShow: function () {
+    util.request(api.CartGoodsCount).then(function (res) {
+      if (res.errno === 0) {
+        wx.setTabBarBadge({
+          index: 2,
+          text: String(res.data.cartTotal.goodsCount),
+        })
+        // that.setData({
+        //   cartGoodsCount: res.data.cartTotal.goodsCount
+        // });
+      }
+    });
     // 页面显示
   },
   onHide: function () {

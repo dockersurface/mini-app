@@ -7,10 +7,14 @@
             <input class="input" bindinput="bindinputMobile" value="{{address.mobile}}" placeholder="手机号码"/>
         </view>
         <view class="form-item">
-            <input class="input" value="{{address.full_region}}" disabled="true" bindtap="chooseRegion" placeholder="省份、城市、区县"/>
+            <!-- <input class="input" value="{{address.full_region}}" disabled="true" bindtap="chooseRegion" placeholder="省份、城市、区县"/> -->
+            <input class="input" value="江苏省苏州市昆山市（暂支持昆山市配送）" disabled="true" />
         </view>
         <view class="form-item">
             <input class="input" bindinput="bindinputAddress" value="{{address.address}}" placeholder="详细地址, 如街道、楼盘号等"/>
+        </view>
+        <view bindtouchstart="bindSearch" data-keywords="{{i.name}}" class="text_box" wx:for="{{tips}}" wx:for-item="i">
+          {{i.name}}
         </view>
         <view class="form-default">
             <text bindtap="bindIsDefault" class="default-input {{address.is_default == 1 ? 'selected' : ''}}">设为默认地址</text>

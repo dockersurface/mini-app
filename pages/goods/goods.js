@@ -252,14 +252,25 @@ Page({
       url: '/pages/cart/cart',
     });
   },
+  onShareAppMessage: function(){
+    return {
+       title: this.data.goods.name, //自定义转发标题
+       path: '/pages/goods/goods?id='+this.data.goods.id, //分享页面路径
+       imageUrl: this.data.goods.primary_pic_url //分享图片 宽高比 5:4
+   }
+  },
   addToCart: function () {
+    if(!wx.getStorageSync('userInfo')) return wx.showToast({
+      title: '请先登录',
+      icon: "none"
+    })
     var that = this;
-    if (this.data.openAttr === false) {
-      //打开规格选择窗口
-      this.setData({
-        openAttr: !this.data.openAttr
-      });
-    } else {
+    // if (this.data.openAttr === false) {
+    //   //打开规格选择窗口
+    //   this.setData({
+    //     openAttr: !this.data.openAttr
+    //   });
+    // } else {
 
       //提示选择完整规格
       if (!this.isCheckedAllSpec()) {
@@ -315,7 +326,7 @@ Page({
           }
 
         });
-    }
+    // }
 
   },
   cutNumber: function () {

@@ -1,13 +1,15 @@
 var util = require('../../../utils/util.js');
 var api = require('../../../config/api.js');
+// 引入SDK核心类
+var QQMapWX = require('../../../utils/qqmap-wx-jssdk.min.js');
 var app = getApp();
 Page({
   data: {
     address: {
       id:0,
-      province_id: 0,
-      city_id: 0,
-      district_id: 0,
+      province_id: 11,
+      city_id: 114,
+      district_id: 4044,
       address: '',
       full_region: '',
       name: '',
@@ -17,13 +19,14 @@ Page({
     addressId: 0,
     openSelectRegion: false,
     selectRegionList: [
-      { id: 0, name: '省份', parent_id: 1, type: 1 },
-      { id: 0, name: '城市', parent_id: 1, type: 2 },
-      { id: 0, name: '区县', parent_id: 1, type: 3 }
+      { id: 11, name: '省份', parent_id: 1, type: 1 },
+      { id: 114, name: '城市', parent_id: 1, type: 2 },
+      { id: 4044, name: '区县', parent_id: 1, type: 3 }
     ],
     regionType: 1,
     regionList: [],
-    selectRegionDone: false
+    selectRegionDone: false,
+    tips: []
   },
   bindinputMobile(event) {
     let address = this.data.address;
@@ -40,10 +43,74 @@ Page({
     });
   },
   bindinputAddress (event){
+    // let address = this.data.address;
+    // address.address = event.detail.value;
+    // this.setData({
+    //   address: address
+    // });
+
+    var that = this;
+    var keywords = event.detail.value; 
+
+    // 实例化API核心类
+    var qqmapsdk = new QQMapWX({
+      key: 'WWVBZ-V4W6P-OVRD2-VYQFN-FHKOO-SWFP3' // 必填
+    });
+    var _this = this;
+    //调用关键词提示接口
+    qqmapsdk.getSuggestion({
+      //获取输入框值并设置keyword参数
+      keyword: `江苏省苏州市昆山市${keywords}`, //用户输入的关键词，可设置固定值,如keyword:'KFC'
+      region:'苏州市', //设置城市名，限制关键词所示的地域范围，非必填参数
+      success: function(res) {//搜索成功后的回调
+        var sug = [];
+        for (var i = 0; i < res.data.length; i++) {
+          sug.push({ // 获取返回结果，放到sug数组中
+            name: res.data[i].title,
+            id: res.data[i].id,
+            addr: res.data[i].address,
+            city: res.data[i].city,
+            district: res.data[i].district,
+            latitude: res.data[i].location.lat,
+            longitude: res.data[i].location.lng
+          });
+        }
+        console.log(sug);
+
+        _this.setData({ //设置suggestion属性，将关键词搜索结果以列表形式展示
+          tips: sug
+        });
+      },
+      fail: function(error) {
+        console.error(error);
+      },
+      complete: function(res) {
+        console.log(res);
+      }
+    });
+    // myAmapFun.getInputtips({
+    //   keywords: `江苏省苏州市昆山市${keywords}`,
+    //   location: lonlat,
+    //   city: '苏州市',
+    //   citylimit: true,
+    //   success: function(data){
+    //     if(data && data.tips){
+    //       that.setData({
+    //         tips: data.tips
+    //       });
+    //     }
+    //   }
+    // })
+  },
+  bindSearch: function(e){
     let address = this.data.address;
-    address.address = event.detail.value;
+    address.address = e.target.dataset.keywords;
     this.setData({
       address: address
+    }, () => {
+      this.setData({
+        tips: []
+      })
     });
   },
   bindIsDefault(){
@@ -128,7 +195,6 @@ Page({
     }
 
     this.getRegionList(1);
-
   },
   onReady: function () {
 
@@ -295,9 +361,12 @@ Page({
       id: address.id,
       name: address.name,
       mobile: address.mobile,
-      province_id: address.province_id,
-      city_id: address.city_id,
-      district_id: address.district_id,
+      // province_id: address.province_id,
+      // city_id: address.city_id,
+      // district_id: address.district_id,
+      province_id: 11,
+      city_id: 114,
+      district_id: 4044,
       address: address.address,
       is_default: address.is_default,
     }, 'POST').then(function (res) {

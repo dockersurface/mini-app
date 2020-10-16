@@ -1,15 +1,4 @@
 <view class="container">
-    <view class="order-info">
-        <view class="item-a">下单时间：{{orderInfo.add_time}}</view>
-        <view class="item-b">订单编号：{{orderInfo.order_sn}}</view>
-        <view class="item-c">
-            <view class="l">实付：<text class="cost">￥{{orderInfo.actual_price}}</text></view>
-            <view class="r">
-                <view class="btn" bindtap="cancelOrder">取消订单</view>
-                <view class="btn active" bindtap="payOrder">去付款</view>
-            </view>
-        </view>
-    </view>
 
     <view class="order-goods">
         <view class="h">
@@ -54,6 +43,17 @@
         <view class="pay-fee">
             <text class="label">实付：</text>
             <text class="txt">￥{{orderInfo.actual_price}}</text>
+        </view>
+    </view>
+    <view class="order-info">
+        <view class="item-a">下单时间：{{orderInfo.add_time}}</view>
+        <view class="item-b">订单编号：{{orderInfo.order_sn}}</view>
+        <view class="item-c">
+            <view class="l">实付：<text class="cost">￥{{orderInfo.actual_price}}</text></view>
+            <view class="r">
+                <!-- <view class="btn" bindtap="cancelOrder">取消订单</view> -->
+                <view wx:if="{{orderInfo.order_status === 0}}" class="btn active" bindtap="payOrder">去付款</view>
+            </view>
         </view>
     </view>
 </view>

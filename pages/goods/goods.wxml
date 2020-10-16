@@ -4,27 +4,37 @@
       <image src="{{item.img_url}}" background-size="cover"></image>
     </swiper-item>
   </swiper>
-  <view class="service-policy">
+  <!-- <view class="service-policy">
     <view class="item">30天无忧退货</view>
     <view class="item">48小时快速退款</view>
     <view class="item">满88元免邮费</view>
-  </view>
-  <view class="goods-info">
-    <view class="c">
-      <text class="name">{{goods.name}}</text>
-      <text class="desc">{{goods.goods_brief}}</text>
-      <text class="price">￥{{goods.retail_price}}</text>
-      <view class="brand" wx:if="{{brand.name}}">
-        <navigator url="../brandDetail/brandDetail?id={{brand.brandId}}">
-          <text>{{brand.name}}</text>
-        </navigator>
+  </view> -->
+  <view>
+    <view class="goods-info">
+      <view class="c">
+        <text class="name">{{goods.name}}</text>
+        <text class="desc">{{goods.goods_brief}}</text>
       </view>
+      <button plain open-type="share" class="goods-info-share">
+        <image src="../../static/images/ic_share.png" background-size="cover"></image>
+        <text>分享</text>
+      </button>
     </view>
+    <view class="goods-info-line">
+      <text class="price">￥{{goods.retail_price}}</text>
+      <text class="sell">销量 {{goods.sell_volume}}</text> 
+      <text class="goods_num">库存 {{goods.goods_number}}</text>  
+    </view>
+    <!-- <view class="brand" wx:if="{{brand.name}}">
+      <navigator url="../brandDetail/brandDetail?id={{brand.brandId}}">
+        <text>{{brand.name}}</text>
+      </navigator>
+    </view> -->
   </view>
-  <view class="section-nav section-attr" bindtap="switchAttrPop">
+  <!-- <view class="section-nav section-attr" bindtap="switchAttrPop">
     <view class="t">请选择规格数量</view>
     <image class="i" src="../../static/images/address_right.png" background-size="cover"></image>
-  </view>
+  </view> -->
   <!--<view class="section-nav section-act">
       <view class="t">
         <view class="label">1个促销:</view>
@@ -59,7 +69,7 @@
       </view>
     </view>
   </view>
-  <view class="goods-attr">
+  <!-- <view class="goods-attr">
     <view class="t">商品参数</view>
     <view class="l">
       <view class="item" wx:for="{{attribute}}" wx:key="{{item.name}}">
@@ -67,12 +77,12 @@
         <text class="right">{{item.value}}</text>
       </view>
     </view>
-  </view>
+  </view> -->
 
-  <view class="detail">
+  <!-- <view class="detail">
     <import src="../../lib/wxParse/wxParse.wxml" />
     <template is="wxParse" data="{{wxParseData:goodsDetail.nodes}}" />
-  </view>
+  </view> -->
 
 
   <view class="common-problem">
@@ -101,7 +111,7 @@
     <view class="b">
       <view class="item" wx:for="{{relatedGoods}}" wx:key="{{item.id}}">
         <navigator url="/pages/goods/goods?id={{item.id}}">
-          <image class="img" src="{{item.list_pic_url}}" background-size="cover"></image>
+          <image class="img" src="{{item.primary_pic_url}}" background-size="cover"></image>
           <text class="name">{{item.name}}</text>
           <text class="price">￥{{item.retail_price}}</text>
         </navigator>
@@ -109,7 +119,7 @@
     </view>
   </view>
 </view>
-<view class="attr-pop-box" hidden="{{!openAttr}}">
+<!-- <view class="attr-pop-box" hidden="{{!openAttr}}">
   <view class="attr-pop">
     <view class="close" bindtap="closeAttr">
       <image class="icon" src="/static/images/icon_close.png"></image>
@@ -141,7 +151,7 @@
       </view>
     </view>
   </view>
-</view>
+</view> -->
 <view class="bottom-btn">
   <view class="l l-collect" bindtap="addCannelCollect">
     <image class="icon" src="{{ collectBackImage }}"></image>

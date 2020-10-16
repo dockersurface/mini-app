@@ -1,4 +1,5 @@
-const ApiRootUrl = 'http://127.0.0.1:8360/api/';
+const ApiRootUrl = 'https://www.lunaflower.club/api/';
+// const ApiRootUrl = 'http://127.0.0.1:8360/api/';
 
 module.exports = {
   IndexUrl: ApiRootUrl + 'index/index', //首页数据接口
@@ -28,6 +29,7 @@ module.exports = {
 
   OrderSubmit: ApiRootUrl + 'order/submit', // 提交订单
   PayPrepayId: ApiRootUrl + 'pay/prepay', //获取微信统一下单prepay_id
+  updateOrderInfo: ApiRootUrl + 'pay/updateOrderInfo',
 
   CollectList: ApiRootUrl + 'collect/list',  //收藏列表
   CollectAddOrDelete: ApiRootUrl + 'collect/addordelete',  //添加或取消收藏
@@ -49,6 +51,7 @@ module.exports = {
   AddressDetail: ApiRootUrl + 'address/detail',  //收货地址详情
   AddressSave: ApiRootUrl + 'address/save',  //保存收货地址
   AddressDelete: ApiRootUrl + 'address/delete',  //保存收货地址
+  addressDefault: ApiRootUrl + 'address/addressDefault',
 
   RegionList: ApiRootUrl + 'region/list',  //获取区域列表
 

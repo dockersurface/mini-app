@@ -1,0 +1,27 @@
+/* components/timePicker/index.wxss */
+.picker-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.input_base {
+  border: 2rpx solid #ccc;
+  padding-left: 10rpx;
+  margin-right: 50rpx;
+}
+
+.input_h30 {
+  height: 30px;
+  line-height: 30px;
+}
+
+.col-1 {
+  -webkit-box-flex: 1;
+  box-flex: 1;
+}
+
+.arrow-right-icon {
+  width: 40rpx;
+  height: 40rpx;
+}

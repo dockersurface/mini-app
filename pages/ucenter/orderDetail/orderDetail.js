@@ -1,5 +1,6 @@
 var util = require('../../../utils/util.js');
 var api = require('../../../config/api.js');
+const pay = require('../../../services/pay.js');
 
 Page({
   data: {
@@ -44,26 +45,16 @@ Page({
     }, 1000);
   },
   payOrder() {
-    let that = this;
-    util.request(api.PayPrepayId, {
-      orderId: that.data.orderId || 15
-    }).then(function (res) {
-      if (res.errno === 0) {
-        const payParam = res.data;
-        wx.requestPayment({
-          'timeStamp': payParam.timeStamp,
-          'nonceStr': payParam.nonceStr,
-          'package': payParam.package,
-          'signType': payParam.signType,
-          'paySign': payParam.paySign,
-          'success': function (res) {
-            console.log(res)
-          },
-          'fail': function (res) {
-            console.log(res)
-          }
-        });
-      }
+    const orderId = this.data.orderId
+    pay.payOrder(orderId).then(res => {
+      util.post(api.updateOrderInfo, {orderId: orderId}).then(res => {
+        wx.showToast({
+          title: '支付成功',
+        })
+        this.getOrderDetail();
+      })
+    }).catch(res => {
+      util.showErrorToast('支付失败');
     });
 
   },
